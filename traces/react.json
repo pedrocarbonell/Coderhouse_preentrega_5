@@ -1,0 +1,121 @@
+[
+  {
+    "event": "turn_start",
+    "label": "cliente_102_total"
+  },
+  {
+    "node": "prune",
+    "delta": "None"
+  },
+  {
+    "node": "agent",
+    "messages": [
+      {
+        "type": "AIMessage",
+        "tool_calls": [
+          {
+            "name": "buscar_pedidos",
+            "args": {
+              "cliente_id": 102
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "node": "tools",
+    "messages": [
+      {
+        "type": "ToolMessage",
+        "content": "{\"cliente_id\": 102, \"pedidos\": 3, \"total\": 14500.0, \"ultimo\": {\"id\": 3, \"monto\": 5000.0, \"fecha\": \"2024-03-20\"}}",
+        "name": "buscar_pedidos"
+      }
+    ]
+  },
+  {
+    "node": "prune",
+    "delta": "None"
+  },
+  {
+    "node": "agent",
+    "messages": [
+      {
+        "type": "AIMessage",
+        "content": "El cliente con ID 102 tuvo 3 pedidos y el total es de 14,500.0."
+      }
+    ]
+  },
+  {
+    "event": "turn_start",
+    "label": "mismo_thread_ultimo"
+  },
+  {
+    "node": "prune",
+    "delta": "None"
+  },
+  {
+    "node": "agent",
+    "messages": [
+      {
+        "type": "AIMessage",
+        "content": "El último pedido del cliente 102 fue el pedido con ID 3, con un monto de 5,000.0, realizado el 20 de marzo de 2024."
+      }
+    ]
+  },
+  {
+    "event": "turn_start",
+    "label": "cliente_999_interrupt"
+  },
+  {
+    "node": "prune",
+    "delta": "None"
+  },
+  {
+    "node": "agent",
+    "messages": [
+      {
+        "type": "AIMessage",
+        "tool_calls": [
+          {
+            "name": "buscar_pedidos",
+            "args": {
+              "cliente_id": 999
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "node": "__interrupt__",
+    "delta": "(Interrupt(value='Cliente 999 no encontrado. Indicá un cliente_id válido.', id='65e43784d693b7787a2e846cb5d310aa', response_schema=None),)"
+  },
+  {
+    "event": "turn_start",
+    "label": "resume_cliente_102"
+  },
+  {
+    "node": "tools",
+    "messages": [
+      {
+        "type": "ToolMessage",
+        "content": "{\"cliente_id\": 102, \"pedidos\": 3, \"total\": 14500.0, \"ultimo\": {\"id\": 3, \"monto\": 5000.0, \"fecha\": \"2024-03-20\"}}",
+        "name": "buscar_pedidos"
+      }
+    ]
+  },
+  {
+    "node": "prune",
+    "delta": "None"
+  },
+  {
+    "node": "agent",
+    "messages": [
+      {
+        "type": "AIMessage",
+        "content": "El cliente con ID 102 tuvo 3 pedidos y el total es de 14,500.00."
+      }
+    ]
+  }
+]
