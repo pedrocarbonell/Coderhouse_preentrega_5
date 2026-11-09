@@ -17,12 +17,16 @@ python main.py
 
 ## Flujo
 
-```
-START → prune → agent ──tools_condition──► tools → prune
-                     └──tools_condition──► END
+```mermaid
+flowchart TD
+  startNode([START]) --> prune
+  prune["prune<br/>recorta mensajes si el estado crece"] --> agent
+  agent["agent<br/>LLM + buscar_pedidos"] -->|"tools_condition: hay tool_calls"| tools
+  agent -->|"tools_condition: respuesta final"| endNode([END])
+  tools["tools<br/>ToolNode / interrupt si no hay cliente"] --> prune
 ```
 
-El modelo decide cuándo llamar a `buscar_pedidos`. El enrutamiento lo hace `tools_condition` 
+El modelo decide cuándo llamar a `buscar_pedidos`. El enrutamiento lo hace `tools_condition` (sin if/else manual).
 
 ## Cómo probar (`python main.py`)
 
